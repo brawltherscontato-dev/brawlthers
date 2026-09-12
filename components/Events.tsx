@@ -1,3 +1,4 @@
+import Logo from "./Logo";
 import Reveal from "./Reveal";
 
 const DISCORD_URL = "https://discord.gg/hwY4cv8met";
@@ -7,7 +8,7 @@ export default function Events() {
     <section id="eventos">
       <div className="container">
         <Reveal>
-          <div className="section-head">
+          <div className="section-head"><span className="eyebrow">02 / ENTRE NA DISPUTA</span>
             <h2>Nossos Eventos</h2>
             <p>
               A BrawlthersCup é uma competição criada pela Brawlthers para
@@ -18,6 +19,7 @@ export default function Events() {
 
         <Reveal>
           <div className="event-feature">
+            <div className="event-copy">
             <div className="event-feature-tag">Season 1</div>
             <h3>BrawlthersCup</h3>
             <p>
@@ -33,6 +35,8 @@ export default function Events() {
             >
               Participar
             </a>
+            </div>
+            <div className="event-art" aria-hidden="true"><span className="event-season">01</span><Logo size="lg" /><span className="event-art-label">BRAWLTHERS CUP</span></div>
           </div>
         </Reveal>
 

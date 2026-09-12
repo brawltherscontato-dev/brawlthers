@@ -24,7 +24,16 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
+    const onResize = () => { if (window.innerWidth >= 860) setOpen(false); };
     document.body.style.overflow = open ? "hidden" : "";
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
   }, [open]);
 
   return (
@@ -58,6 +67,7 @@ export default function Header() {
           className={`menu-toggle ${open ? "is-open" : ""}`}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
+          aria-controls="mobile-menu"
           onClick={() => setOpen((v) => !v)}
         >
           <span />
@@ -66,7 +76,7 @@ export default function Header() {
         </button>
       </div>
 
-      <div className={`nav-mobile ${open ? "is-open" : ""}`}>
+      <div id="mobile-menu" className={`nav-mobile ${open ? "is-open" : ""}`}>
         <nav aria-label="Navegação móvel">
           {LINKS.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setOpen(false)}>

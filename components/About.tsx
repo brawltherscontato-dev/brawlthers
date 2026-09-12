@@ -44,7 +44,7 @@ export default function About() {
     <section id="quem-somos">
       <div className="container">
         <Reveal>
-          <div className="section-head">
+          <div className="section-head"><span className="eyebrow">01 / NOSSA ESSÊNCIA</span>
             <h2>Quem Somos</h2>
             <p>
               A Brawlthers é uma organização voltada para a comunidade e para o
