@@ -1,7 +1,6 @@
 import Logo from "./Logo";
 import Reveal from "./Reveal";
-
-const DISCORD_URL = "https://discord.gg/hwY4cv8met";
+import { CUP_MEMBER_GOAL, DISCORD_URL } from "@/lib/site";
 
 export default function DiscordCTA() {
   return (
@@ -11,10 +10,10 @@ export default function DiscordCTA() {
         <Reveal>
           <div className="discord-logo"><Logo size="lg" /></div>
           <span className="eyebrow">SEU PRÓXIMO JOGO COMEÇA AQUI</span>
-          <h2>Faça parte da Brawlthers.</h2>
+          <h2>Seu lugar na arena<br />é com a Brawlthers.</h2>
           <p>
-            Entre no nosso Discord para acompanhar campeonatos, inscrições,
-            anúncios, regras, novidades e participar da comunidade.
+            Encontre sua fila, chame seu adversário e venha construir a próxima
+            fase com a gente. Rumo aos {CUP_MEMBER_GOAL} membros e à Cup Season 2.
           </p>
           <a
             href={DISCORD_URL}
@@ -22,7 +21,7 @@ export default function DiscordCTA() {
             rel="noopener noreferrer"
             className="btn btn-primary btn-lg"
           >
-            Entrar no Discord
+            Quero fazer parte
           </a>
         </Reveal>
       </div>

@@ -1,6 +1,6 @@
 import Reveal from "./Reveal";
-
-const DISCORD_URL = "https://discord.gg/hwY4cv8met";
+import Icon from "./Icon";
+import { DISCORD_URL } from "@/lib/site";
 
 export default function Rules() {
   return (
@@ -9,11 +9,12 @@ export default function Rules() {
         <Reveal>
           <div className="rules-box">
             <div>
-              <h2>Regras e Regulamento</h2>
+              <span className="rules-kicker"><Icon name="shield" /> RESPEITO FAZ PARTE DO JOGO</span>
+              <h2>Disputa boa tem regra clara.</h2>
               <p>
-                Os regulamentos completos dos eventos e da comunidade ficam
-                disponíveis no nosso Discord, sempre atualizados antes de cada
-                competição.
+                Leia o regulamento da modalidade antes de entrar, respeite os
+                adversários e combine os detalhes no canal da partida. Regras,
+                resultados e dúvidas são acompanhados pela Staff no Discord.
               </p>
             </div>
             <a

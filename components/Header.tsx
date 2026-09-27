@@ -2,15 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-
-const DISCORD_URL = "https://discord.gg/hwY4cv8met";
-
-const LINKS = [
-  { href: "#inicio", label: "Início" },
-  { href: "#quem-somos", label: "Quem Somos" },
-  { href: "#eventos", label: "Eventos" },
-  { href: "#regras", label: "Regras" },
-];
+import { DISCORD_URL, NAV_LINKS } from "@/lib/site";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +17,7 @@ export default function Header() {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
-    const onResize = () => { if (window.innerWidth >= 860) setOpen(false); };
+    const onResize = () => { if (window.innerWidth >= 1100) setOpen(false); };
     document.body.style.overflow = open ? "hidden" : "";
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
@@ -44,14 +36,11 @@ export default function Header() {
         </a>
 
         <nav className="nav-desktop" aria-label="Navegação principal">
-          {LINKS.map((link) => (
+          {NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href}>
               {link.label}
             </a>
           ))}
-          <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
-            Discord
-          </a>
         </nav>
 
         <a
@@ -78,11 +67,12 @@ export default function Header() {
 
       <div id="mobile-menu" className={`nav-mobile ${open ? "is-open" : ""}`}>
         <nav aria-label="Navegação móvel">
-          {LINKS.map((link) => (
+          {NAV_LINKS.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
               {link.label}
             </a>
           ))}
+          <a href="#duvidas" onClick={() => setOpen(false)}>Dúvidas frequentes</a>
           <a
             href={DISCORD_URL}
             target="_blank"

@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 const PILLARS = [
   {
     title: "Comunidade",
-    text: "Um espaço para jogadores se conectarem, formarem equipes e participarem dos nossos projetos.",
+    text: "Encontre adversários, combine partidas com amigos e faça parte das próximas fases da Brawlthers. O Discord é o nosso ponto de encontro.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <circle cx="7" cy="7" r="3.4" stroke="#F4C430" strokeWidth="1.6" />
@@ -15,7 +15,7 @@ const PILLARS = [
   },
   {
     title: "Competição",
-    text: "Campeonatos e eventos organizados com regras claras, acompanhamento e organização.",
+    text: "Do 1v1 ao Combate Solo, você sabe o formato e os valores antes de entrar. A Staff acompanha os confrontos e organiza os resultados.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path
@@ -29,7 +29,7 @@ const PILLARS = [
   },
   {
     title: "Evolução",
-    text: "Um ambiente para competir, aprender, evoluir e construir novas experiências dentro do jogo.",
+    text: "Use os amistosos para testar estratégias, enfrente novos estilos de jogo e prepare-se para os apostados e para a próxima Brawlthers Cup.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path d="M2 17 8 10l4 4 8-9" stroke="#F4C430" strokeWidth="1.6" strokeLinecap="round" />
@@ -44,13 +44,12 @@ export default function About() {
     <section id="quem-somos">
       <div className="container">
         <Reveal>
-          <div className="section-head"><span className="eyebrow">01 / NOSSA ESSÊNCIA</span>
-            <h2>Quem Somos</h2>
+          <div className="section-head"><span className="eyebrow">04 / A NOSSA IDENTIDADE</span>
+            <h2>Mais que partidas.<br />Somos Brawlthers.</h2>
             <p>
-              A Brawlthers é uma organização voltada para a comunidade e para o
-              cenário competitivo de Brawl Stars. Nosso objetivo é criar
-              experiências competitivas, organizar eventos e conectar
-              jogadores em um ambiente organizado, ativo e profissional.
+              A Brawlthers nasceu para conectar quem leva Brawl Stars a sério
+              e quem só quer uma boa partida. Comunidade, organização e vontade
+              de evoluir: é assim que construímos o nosso espaço no competitivo.
             </p>
           </div>
         </Reveal>

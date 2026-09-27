@@ -27,17 +27,24 @@ npm run start
 3. A Vercel detecta o Next.js automaticamente — não é necessário configurar nada.
 4. Clique em "Deploy".
 
-## Adicionar a logo oficial
+## Atualizar o conteúdo
 
-Nenhuma logo foi enviada ainda, então o site usa um wordmark provisório
-("BRAWLTHERS" + um losango dourado) no arquivo `components/Logo.tsx`.
+- `lib/site.ts` centraliza o convite do Discord, links da navegação, meta de
+  membros da Cup e tabelas de valores. Valores são **centavos inteiros**.
+- A Cup Season 2 está anunciada para o marco de **500 membros no Discord**.
+  Esse número é uma meta, não uma contagem ao vivo. Data, formato, premiação e
+  inscrições ainda serão anunciados pela organização.
+- Os valores publicados refletem os planos do bot. Se a Staff alterar um
+  plano no Discord, atualize também `DUEL_PLANS` ou `SOLO_PLANS` no site.
+  Cada inscrição segue os valores e regras exibidos na respectiva fila.
+- `components/FAQ.tsx` explica inscrição, Pix, prazos, criação de canais e
+  devoluções. Ao alterar essas políticas no bot, revise essas respostas.
+- A logo oficial está em `public/logo.jpg` e é reutilizada no cabeçalho,
+  apresentação, Cup, chamada para o Discord e rodapé.
 
-Quando você tiver o arquivo final da logo:
-
-1. Salve-o em `public/logo.svg` (ou `public/logo.png`).
-2. Abra `components/Logo.tsx` e troque o conteúdo do `<span className="logo">`
-   por uma tag `<img src="/logo.svg" alt="Brawlthers" className="logo-mark-img" />`,
-   ajustando o tamanho via CSS em `app/globals.css` se necessário.
+O site é institucional: as inscrições e os pagamentos acontecem pelo bot no
+Discord. Este projeto não cria cobranças, não acessa o banco do bot e não
+altera a configuração das modalidades.
 
 ## Estrutura
 
@@ -49,22 +56,25 @@ app/
 components/
   Header.tsx      → navbar sticky + menu hambúrguer mobile
   Hero.tsx        → seção inicial
-  About.tsx       → "Quem Somos" + 3 cards
-  Events.tsx      → "Nossos Eventos" + BrawlthersCup
+  GameModes.tsx   → amistoso, 1v1 apostado e Combate Solo com valores
+  HowToPlay.tsx   → passo a passo de inscrição e Pix no celular
+  Events.tsx      → Brawlthers Cup Season 2 e meta de 500 membros
+  About.tsx       → comunidade, competição e evolução
+  FAQ.tsx         → dúvidas frequentes em acordeões nativos
   Rules.tsx       → "Regras e Regulamento"
   DiscordCTA.tsx  → chamada final para o Discord
   Footer.tsx      → rodapé
-  Logo.tsx        → wordmark/logo (trocar pela logo oficial — ver acima)
+  Logo.tsx        → logo oficial e assinatura da marca
+  Icon.tsx        → ícones SVG leves
   Reveal.tsx      → animação leve de entrada ao rolar a página
   Divider.tsx     → linha divisória diagonal entre seções
+lib/
+  site.ts        → links, meta da Cup e planos publicados no site
 ```
 
-## Conteúdo pendente (propositalmente não preenchido)
+## Verificação antes de publicar
 
-Por instrução do briefing, não foram inventados números, patrocinadores,
-premiações ou estatísticas. Os espaços para isso já estão estruturados:
-
-- `components/Events.tsx` — card "Novos eventos em breve" pronto para novos
-  campeonatos além da BrawlthersCup.
-- Seção "Quem Somos" pode receber números reais (membros, campeonatos
-  realizados etc.) quando existirem — hoje traz só o texto institucional.
+Execute `npm run build`. Confira a página no desktop e no celular, o menu,
+os acordeões, os links das seções e os botões do Discord. As animações
+respeitam a preferência de movimento reduzido e o conteúdo principal
+continua disponível mesmo sem JavaScript.
