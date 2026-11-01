@@ -29,7 +29,7 @@ const PILLARS = [
   },
   {
     title: "Evolução",
-    text: "Use os amistosos para testar estratégias, enfrente novos estilos de jogo e prepare-se para os apostados e para a próxima Brawlthers Cup.",
+    text: "Use os amistosos para testar estratégias, enfrente novos estilos de jogo e evolua a cada confronto com a comunidade.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <path d="M2 17 8 10l4 4 8-9" stroke="#F4C430" strokeWidth="1.6" strokeLinecap="round" />
@@ -44,7 +44,7 @@ export default function About() {
     <section id="quem-somos">
       <div className="container">
         <Reveal>
-          <div className="section-head"><span className="eyebrow">04 / A NOSSA IDENTIDADE</span>
+          <div className="section-head"><span className="eyebrow">03 / A NOSSA IDENTIDADE</span>
             <h2>Mais que partidas.<br />Somos Brawlthers.</h2>
             <p>
               A Brawlthers nasceu para conectar quem leva Brawl Stars a sério

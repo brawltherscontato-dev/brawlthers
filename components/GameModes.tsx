@@ -16,7 +16,7 @@ export default function GameModes() {
 
         <div className="mode-grid">
           <Reveal className="mode-reveal">
-            <article className="mode-card mode-friendly">
+            <article id="amistoso" className="mode-card mode-friendly">
               <div className="mode-top"><span className="mode-symbol"><Icon name="gamepad" /></span><span className="mode-badge">GRATUITO</span></div>
               <span className="mode-format">1X1 NOCAUTE</span>
               <h3>1v1 Amistoso</h3>
@@ -32,7 +32,7 @@ export default function GameModes() {
           </Reveal>
 
           <Reveal className="mode-reveal" delay={80}>
-            <article className="mode-card mode-duel">
+            <article id="duelo" className="mode-card mode-duel">
               <div className="mode-top"><span className="mode-symbol"><Icon name="swords" /></span><span className="mode-badge">APOSTADO · PIX</span></div>
               <span className="mode-format">1X1 NOCAUTE</span>
               <h3>1v1 Apostado</h3>
