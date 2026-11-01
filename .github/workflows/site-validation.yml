@@ -3,14 +3,14 @@ name: Site validation
 on:
   pull_request:
   push:
-    branches: [main, "codex/site-fluido-sem-cup"]
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
   site:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 12
     env:
       NEXT_TELEMETRY_DISABLED: "1"
