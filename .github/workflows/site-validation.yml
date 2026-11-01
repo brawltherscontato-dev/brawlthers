@@ -1,0 +1,92 @@
+name: Site validation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Install browser for UI checks
+        run: |
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Check navigation and responsive layouts
+        run: |
+          npm run start > /tmp/site.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --silent --fail http://localhost:3000 > /dev/null; then break; fi
+            sleep 1
+          done
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { mkdir } from 'node:fs/promises';
+          import { chromium } from 'playwright';
+          await mkdir('screenshots', { recursive: true });
+          const browser = await chromium.launch();
+          try {
+            for (const width of [1440, 768, 390, 320]) {
+              const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
+              const errors = [];
+              page.on('pageerror', error => errors.push(error.message));
+              await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
+              assert.doesNotMatch(await page.locator('body').innerText(), /Cup|Season 2|500 membros/i);
+              assert.doesNotMatch(await page.title(), /Cup|Season 2/i);
+              assert.equal(await page.locator('#eventos').count(), 0);
+              assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+              const invalidLinks = await page.locator('a[href^="#"]').evaluateAll(links =>
+                links.map(link => link.getAttribute('href')).filter(href => !document.getElementById(href.slice(1))));
+              assert.deepEqual(invalidLinks, []);
+              await page.screenshot({ path: 'screenshots/arena-' + width + '.png', fullPage: true });
+              if (width < 1100) {
+                await page.getByRole('button', { name: 'Abrir menu' }).click();
+                assert.equal(await page.getByRole('button', { name: 'Fechar menu' }).getAttribute('aria-expanded'), 'true');
+                await page.keyboard.press('Escape');
+                assert.equal(await page.getByRole('button', { name: 'Abrir menu' }).getAttribute('aria-expanded'), 'false');
+                assert.equal(await page.evaluate(() => document.body.style.overflow), '');
+              }
+              await page.locator('.hero-highlights a[href="#duelo"]').click();
+              assert.equal(await page.evaluate(() => location.hash), '#duelo');
+              await page.waitForFunction(() => document.querySelector('.nav-desktop a[href="#modalidades"]')?.getAttribute('aria-current') === 'location');
+              const bounds = await page.locator('#duelo').boundingBox();
+              assert.ok(bounds.y >= 76 && bounds.y < 180, 'Anchor must clear the sticky header');
+              await page.locator('#duvidas').scrollIntoViewIfNeeded();
+              await page.locator('.faq-list summary').first().click();
+              assert.equal(await page.locator('.faq-list details').first().getAttribute('open'), '');
+              const back = page.getByRole('link', { name: 'Voltar ao início' });
+              await back.waitFor({ state: 'visible' });
+              await back.click();
+              await page.waitForFunction(() => scrollY < 150);
+              assert.deepEqual(errors, []);
+              await page.close();
+            }
+            const plain = await browser.newPage({ javaScriptEnabled: false, reducedMotion: 'reduce' });
+            await plain.goto('http://localhost:3000');
+            assert.equal(await plain.getByRole('heading', { name: /SEU JOGO/ }).isVisible(), true);
+            assert.equal(await plain.locator('#modalidades h2').isVisible(), true);
+            await plain.close();
+          } finally {
+            await browser.close();
+          }
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-screenshots
+          path: screenshots
+          if-no-files-found: ignore

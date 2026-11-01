@@ -20,7 +20,7 @@ export default function HowToPlay() {
             <p>O bot cuida da inscrição e da confirmação. Você acompanha tudo no Discord, inclusive pelo celular.</p>
           </div>
         </Reveal>
-        <ol className="steps-grid">
+        <ol className="steps-grid steps-connected">
           {STEPS.map((step, index) => <li key={step.title}><Reveal delay={index * 70}><div className="step-top"><span>0{index + 1}</span><Icon name={step.icon} /></div><h3>{step.title}</h3><p>{step.text}</p></Reveal></li>)}
         </ol>
         <Reveal>

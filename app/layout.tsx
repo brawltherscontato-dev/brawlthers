@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Chakra_Petch, Inter } from "next/font/google";
-import { CUP_MEMBER_GOAL } from "@/lib/site";
 import "./globals.css";
 
 const display = Chakra_Petch({
@@ -18,14 +17,14 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Brawlthers — 1v1, Combate Solo e Cup Season 2",
+  title: "Brawlthers — Sua arena de Brawl Stars",
   description:
-    `Sua arena de Brawl Stars: 1v1 amistoso e apostado, Combate Solo com 9 jogadores e Pix pelo Discord. Cup Season 2 em breve, quando chegarmos a ${CUP_MEMBER_GOAL} membros.`,
+    "Sua arena de Brawl Stars: 1v1 amistoso e apostado, Combate Solo com 9 jogadores e Pix pelo Discord. Encontre sua próxima partida na Brawlthers.",
   metadataBase: new URL("https://brawlthers.vercel.app"),
   openGraph: {
     title: "Brawlthers — Seu jogo. Outro nível.",
     description:
-      `Amistosos, apostados de 1v1 e Combate Solo. Entre na comunidade e acompanhe a Brawlthers Cup Season 2, prevista para o marco de ${CUP_MEMBER_GOAL} membros no Discord.`,
+      "Amistosos, apostados de 1v1 e Combate Solo. Entre na comunidade, encontre seu adversário e evolua com a Brawlthers.",
     locale: "pt_BR",
     images: [{ url: "/logo.jpg", width: 1280, height: 1280, alt: "Brawlthers" }],
     type: "website",

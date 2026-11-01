@@ -1,12 +1,10 @@
 // Conteúdo público do site. Ao alterar os planos no bot, atualize os valores aqui.
 // A mensagem de cada fila no Discord é a referência para aquela inscrição.
 export const DISCORD_URL = "https://discord.gg/hwY4cv8met";
-export const CUP_MEMBER_GOAL = 500;
 
 export const NAV_LINKS = [
   { href: "#modalidades", label: "Modalidades" },
   { href: "#como-jogar", label: "Como jogar" },
-  { href: "#eventos", label: "Cup Season 2" },
   { href: "#quem-somos", label: "A Brawlthers" },
 ];
 

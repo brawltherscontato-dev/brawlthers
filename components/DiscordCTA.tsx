@@ -1,6 +1,6 @@
 import Logo from "./Logo";
 import Reveal from "./Reveal";
-import { CUP_MEMBER_GOAL, DISCORD_URL } from "@/lib/site";
+import { DISCORD_URL } from "@/lib/site";
 
 export default function DiscordCTA() {
   return (
@@ -13,7 +13,7 @@ export default function DiscordCTA() {
           <h2>Seu lugar na arena<br />é com a Brawlthers.</h2>
           <p>
             Encontre sua fila, chame seu adversário e venha construir a próxima
-            fase com a gente. Rumo aos {CUP_MEMBER_GOAL} membros e à Cup Season 2.
+            fase com a gente. Do primeiro amistoso ao próximo grande confronto.
           </p>
           <a
             href={DISCORD_URL}
